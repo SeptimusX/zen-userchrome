@@ -1,0 +1,43 @@
+/* ============================================================
+   Zen Browser - userChrome.css
+   Sidebar tab titles and the "New Tab" row are shown at
+   90% of their normal size.
+   Zen 1.24.x sets #tabbrowser-tabs { font-size: 14px } on Windows,
+   so 0.9em here = 12.6px.
+   ============================================================ */
+
+#tabbrowser-tabs .tabbrowser-tab .tab-label,
+#tabs-newtab-button > .toolbarbutton-text {
+  font-size: 0.9em !important;
+}
+
+/* ============================================================
+   Context menus / panels: restore a visible outline.
+   Under Mica, Zen/Firefox set --panel-border-color to transparent
+   and rely on DWM; this keeps a border when DWM draws none.
+   ============================================================ */
+menupopup,
+panel[type="arrow"]:not(#feature-callout) {
+  --panel-border-color: light-dark(
+    rgba(0, 0, 0, 0.22),
+    rgba(255, 255, 255, 0.22)
+  ) !important;
+}
+
+/* ============================================================
+   Compact sizing.
+   Tab row = 5px padding + --tab-min-height + 2 * --tab-margin-block.
+   Zen default: 5 + 36 + 4 = 45px; here 5 + 30 + 4 = 39px.
+   ============================================================ */
+#tabbrowser-tabs {
+  --tab-min-height: 30px !important;
+  --tab-margin-block: 2px !important;
+  --tab-height-with-margin-padding: calc(
+    5px + var(--tab-min-height) + 2 * var(--tab-margin-block)
+  ) !important;
+}
+
+/* Context-menu rows: 0.5em vertical padding -> 0.3em. */
+menupopup {
+  --menuitem-padding-block: 0.3em !important;
+}
